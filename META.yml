@@ -16,7 +16,7 @@ name: Statistics-Swoop
 provides:
   Statistics::Swoop:
     file: lib/Statistics/Swoop.pm
-    version: 0.01
+    version: 0.02
 requires:
   Carp: 0
   Class::Accessor::Lite: 0
@@ -24,4 +24,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/bayashi/Statistics-Swoop
-version: 0.01
+version: 0.02

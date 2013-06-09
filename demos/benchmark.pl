@@ -14,7 +14,7 @@ my $swoop = sub {
         $ss->max,
         $ss->min,
         $ss->range,
-        $ss->ave,
+        $ss->avg,
     );
 };
 

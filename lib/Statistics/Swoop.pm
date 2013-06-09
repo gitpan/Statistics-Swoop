@@ -7,7 +7,7 @@ use Class::Accessor::Lite (
     ro  => [qw/count max min range sum avg/],
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     my ($class, $list) = @_;
@@ -34,8 +34,12 @@ sub _calc {
 
     for my $i (@{$self->list}) {
         $sum += $i;
-        $max = $i if $max < $i;
-        $min = $i if $min > $i;
+        if ($max < $i) {
+            $max = $i;
+        }
+        elsif ($min > $i) {
+            $min = $i;
+        }
     }
 
     if ($self->count == 1) {
@@ -139,13 +143,13 @@ See the source in this modules directory(demos/*.pl).
 
     $ perl demos/benchmark.pl
     Benchmark: running Lite, Swoop for at least 1 CPU seconds...
-          Lite:  1 wallclock secs ( 1.08 usr +  0.00 sys =  1.08 CPU) @ 103.70/s (n=112)
-         Swoop:  1 wallclock secs ( 1.09 usr +  0.00 sys =  1.09 CPU) @ 236.70/s (n=258)
+          Lite:  1 wallclock secs ( 1.09 usr +  0.00 sys =  1.09 CPU) @ 110.09/s (n=120)
+         Swoop:  1 wallclock secs ( 1.07 usr +  0.00 sys =  1.07 CPU) @ 313.08/s (n=335)
            Rate  Lite Swoop
-    Lite  104/s    --  -56%
-    Swoop 237/s  128%    --
+    Lite  110/s    --  -65%
+    Swoop 313/s  184%    --
 
-C<Statistics::Swoop> is 110-130% faster than L<Statistics::Lite>.
+C<Statistics::Swoop> is 170-190% faster than L<Statistics::Lite>.
 Actually, when you calculate very small list, then L<Statistics::Lite> is bit faster than C<Statistics::Swoop>.
 
 
